@@ -1,0 +1,43 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@repo/shared-constants": "workspace:*",
+    "@repo/shared-schemas": "workspace:*",
+    "@repo/shared-api": "workspace:*",
+    "@hookform/resolvers": "^5.9.1",
+    "@react-router/node": "^8",
+    "@react-router/serve": "^8",
+    "@tanstack/react-query": "^5.102.3",
+    "bootstrap": "^5.3.8",
+    "clsx": "^2.1.1",
+    "isbot": "^5.1.36",
+    "lucide-react": "^1.34.0",
+    "react": "^19.2.7",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.7",
+    "react-hook-form": "^7.86.0",
+    "react-router": "^8",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@react-router/dev": "^8",
+    "@tanstack/eslint-plugin-query": "^5.102.3",
+    "@tanstack/react-query-devtools": "^5.102.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "vite": "^8.0.3"
+  }
+}

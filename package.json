@@ -1,0 +1,22 @@
+{
+  "name": "izen",
+  "version": "1.0.0",
+  "description": "React Project For Izen ERP",
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm --filter client dev",
+    "dev:client": "pnpm --filter client dev",
+    "build": "pnpm -r build",
+    "build:client": "pnpm --filter client build",
+    "build:packages": "pnpm --filter @repo/* build",
+    "start:client": "pnpm --filter client start",
+    "lint": "pnpm -r lint",
+    "typecheck:client": "pnpm --filter client typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.59.2",
+    "@types/node": "^22",
+    "prettier": "^3.8.4"
+  }
+}
