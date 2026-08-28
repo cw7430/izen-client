@@ -15,6 +15,11 @@
       "types": "./dist/error/index.d.ts",
       "import": "./dist/error/index.js",
       "default": "./dist/error/index.js"
+    },
+    "./fetch": {
+      "types": "./dist/fetch/index.d.ts",
+      "import": "./dist/fetch/index.js",
+      "default": "./dist/fetch/index.js"
     }
   },
   "dependencies": {
