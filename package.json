@@ -10,8 +10,7 @@
     "build:client": "pnpm --filter client build",
     "start:client": "pnpm --filter client start",
     "lint": "pnpm -r lint",
-    "typecheck:client": "pnpm --filter client typecheck",
-    "postinstall": "pnpm --filter @repo/* build"
+    "postinstall": "pnpm --filter @repo/* build && pnpm --filter client typecheck"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
