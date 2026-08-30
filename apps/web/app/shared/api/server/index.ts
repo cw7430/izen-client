@@ -1,1 +1,1 @@
-export { ServerRequest, type AuthType } from './fetch';
+export { ServerRequest, type AuthType } from './fetch.server';

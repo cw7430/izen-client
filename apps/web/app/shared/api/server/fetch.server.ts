@@ -8,6 +8,8 @@ import {
 } from '@repo/shared-api/fetch';
 import { ResponseCode } from '@repo/shared-constants/api';
 
+import { getCookies } from '~/shared/lib/server';
+
 export type AuthType = 'access' | 'refresh' | 'none';
 
 interface FetchOptions extends RequestInit {
@@ -34,10 +36,10 @@ const resolveAuthOptions = async (
     );
   }
 
-  const cookieHeader = request.headers.get('Cookie');
+  const cookies = getCookies(request);
 
-  if (!cookieHeader) {
-    console.error('The token is not found');
+  if (!cookies) {
+    console.error('The cookie is not found');
     throw new ApiError(
       ResponseCode.UNAUTHORIZED.code,
       ResponseCode.UNAUTHORIZED.message,
@@ -46,16 +48,10 @@ const resolveAuthOptions = async (
 
   const cookieKey = authType === 'access' ? 'accessToken' : 'refreshToken';
 
-  const cookies = Object.fromEntries(
-    cookieHeader.split(';').map((cookie) => {
-      const [key, ...value] = cookie.trim().split('=');
-      return [key, value.join('=')];
-    }),
-  );
-
   const bearerToken = cookies[cookieKey];
 
   if (!bearerToken) {
+    console.error('The token is not found');
     throw new ApiError(
       ResponseCode.UNAUTHORIZED.code,
       ResponseCode.UNAUTHORIZED.message,
