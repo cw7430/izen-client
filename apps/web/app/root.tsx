@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import type { Route } from './+types/root';
 import './app.css';
+import { ReactQueryProvider } from './shared/components/layout/react-query';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -25,8 +26,19 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Izen' },
+    { name: 'description', content: 'Izen 사내 관리 시스템' },
+  ];
+}
+
 export default function App() {
-  return <Outlet />;
+  return (
+    <ReactQueryProvider>
+      <Outlet />
+    </ReactQueryProvider>
+  );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
