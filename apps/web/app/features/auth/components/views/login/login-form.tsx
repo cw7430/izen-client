@@ -105,8 +105,7 @@ export default function LoginForm() {
   }, [fetcher.data, login, navigate, redirectTo, setError]);
 
   return (
-    <fetcher.Form
-      method="post"
+    <Form
       onSubmit={handleSubmit(onSubmit)}
       onChange={handleFormChange}
       noValidate
@@ -179,6 +178,6 @@ export default function LoginForm() {
         {isPending && <Spinner size="sm" />}
         로그인
       </Button>
-    </fetcher.Form>
+    </Form>
   );
 }

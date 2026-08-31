@@ -1,3 +1,4 @@
+import { data } from 'react-router';
 import clsx from 'clsx';
 import { ApiError } from '@repo/shared-api/error';
 
@@ -8,27 +9,39 @@ import { loginRequestSchema } from '~/features/auth/schemas';
 import { LoginForm } from '~/features/auth/components/views/login';
 
 export const action = async ({ request }: Route.ActionArgs) => {
-  try {
-    const formData = await request.formData();
+  const formData = await request.formData();
 
-    const req = loginRequestSchema.parse({
-      userName: formData.get('userName'),
-      password: formData.get('password'),
-      isAuto: formData.get('isAuto') === 'true',
+  const parsed = loginRequestSchema.safeParse({
+    userName: formData.get('userName'),
+    password: formData.get('password'),
+    isAuto: formData.get('isAuto') === 'true',
+  });
+
+  if (!parsed.success) {
+    return data({
+      success: false as const,
+      code: 'VE' as const,
     });
+  }
 
-    const data = await loginAction(req);
+  try {
+    const { data: loginData, headers } = await loginAction(parsed.data);
 
-    return {
-      success: true as const,
-      data,
-    };
+    return data(
+      {
+        success: true as const,
+        data: loginData,
+      },
+      {
+        headers,
+      },
+    );
   } catch (e) {
     if (e instanceof ApiError) {
-      return {
+      return data({
         success: false as const,
         code: e.code,
-      };
+      });
     }
 
     throw e;
