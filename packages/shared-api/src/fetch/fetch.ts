@@ -1,6 +1,6 @@
 import { ResponseCode } from '@repo/shared-constants/api';
 import type { ApiFail } from '@repo/shared-schemas/api';
-import { ApiError } from '../error';
+import { ApiError } from '../error/index.js';
 
 export type ContentType = 'JSON' | 'FORM';
 

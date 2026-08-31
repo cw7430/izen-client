@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import type { Route } from './+types/root';
 import './app.css';
-import { ReactQueryProvider } from './shared/components/layout/react-query';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -34,11 +33,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function App() {
-  return (
-    <ReactQueryProvider>
-      <Outlet />
-    </ReactQueryProvider>
-  );
+  return <Outlet />;
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {

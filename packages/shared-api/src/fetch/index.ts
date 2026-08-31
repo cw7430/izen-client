@@ -5,4 +5,4 @@ export {
   resolveContentType,
   type ContentType,
   type QueryValue,
-} from './fetch';
+} from './fetch.js';

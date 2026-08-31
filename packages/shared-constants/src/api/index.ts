@@ -3,4 +3,4 @@ export {
   ResponseCodeValues,
   type ResponseCodeKey,
   type ResponseCodeType,
-} from './response-code';
+} from './response-code.js';
