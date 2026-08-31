@@ -79,5 +79,8 @@ export const loginAndRefresh = async (
     ...clientData
   } = result;
 
-  return clientData;
+  return {
+    data: clientData,
+    headers,
+  };
 };

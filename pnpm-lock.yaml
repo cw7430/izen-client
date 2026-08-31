@@ -41,9 +41,6 @@ importers:
       '@repo/shared-schemas':
         specifier: workspace:*
         version: link:../../packages/shared-schemas
-      '@tanstack/react-query':
-        specifier: ^5.102.3
-        version: 5.102.3(react@19.2.8)
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)

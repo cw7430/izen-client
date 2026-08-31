@@ -39,4 +39,6 @@ export const logoutAction = async (request: Request) => {
       expires: new Date(0),
     }),
   );
+
+  return headers;
 };
