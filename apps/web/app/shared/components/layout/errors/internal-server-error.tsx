@@ -16,7 +16,7 @@ export default function InternalServerError() {
         navigate('/', { replace: true });
       },
     });
-  }, []);
+  }, [navigate, showModal]);
 
   return null;
 }

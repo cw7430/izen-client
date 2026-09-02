@@ -40,5 +40,5 @@ export const logoutAction = async (request: Request) => {
     }),
   );
 
-  return headers;
+  return { headers };
 };

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router';
 import { Button, Container, Navbar, Nav } from 'react-bootstrap';
+import { LogoutButton } from '~/features/auth/components/ui';
 
 export default function Header() {
   const { pathname } = useLocation();
@@ -43,9 +44,7 @@ export default function Header() {
         <Button variant="outline-light" type="button">
           내프로필
         </Button>
-        <Button variant="outline-light" type="button">
-          로그아웃
-        </Button>
+        <LogoutButton />
       </div>
     </header>
   );

@@ -13,9 +13,12 @@
     "postinstall": "pnpm --filter @repo/* build && pnpm --filter web typecheck"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.59.2",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22",
-    "prettier": "^3.8.4"
+    "eslint": "^10.9.1",
+    "globals": "^17.11.0",
+    "prettier": "^3.8.4",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.59.2"
   }
 }

@@ -20,7 +20,7 @@ export default function InvalidUrl({ redirectTo }: Props) {
         navigate(redirectTo, { replace: true });
       },
     });
-  }, []);
+  }, [navigate, showModal, redirectTo]);
 
   return null;
 }
