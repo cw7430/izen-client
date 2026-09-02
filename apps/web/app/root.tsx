@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import type { Route } from './+types/root';
 import './app.css';
+import { DialogModal } from './shared/components/ui/modal';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -34,7 +35,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <DialogModal />
+      <Outlet />
+    </>
+  );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
