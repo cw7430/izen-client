@@ -14,7 +14,8 @@ export default function LogoutButton() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
-  const params = new URLSearchParams(searchParams.toString());
+  const queryString = searchParams.toString();
+  const currentPath = queryString ? `${pathname}?${queryString}` : pathname;
   const fetcher = useFetcher<typeof action>();
 
   const logout = useAuthStore((s) => s.logout);
@@ -29,10 +30,10 @@ export default function LogoutButton() {
     if (!res) return;
 
     logout();
-    navigate(`/login?redirect=${encodeURIComponent(`${pathname}?${params}`)}`, {
+    navigate(`/login?redirect=${encodeURIComponent(currentPath)}}`, {
       replace: true,
     });
-  }, [fetcher.data]);
+  }, [fetcher.data, logout, navigate, currentPath]);
 
   const isPending = fetcher.state !== 'idle';
 

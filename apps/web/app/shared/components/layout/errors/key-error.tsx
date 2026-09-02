@@ -16,7 +16,7 @@ export default function KeyError() {
         navigate('/', { replace: true });
       },
     });
-  }, []);
+  }, [navigate, showModal]);
 
   return null;
 }

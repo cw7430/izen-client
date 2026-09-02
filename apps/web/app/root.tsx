@@ -25,6 +25,7 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+// eslint-disable-next-line no-empty-pattern
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Izen' },

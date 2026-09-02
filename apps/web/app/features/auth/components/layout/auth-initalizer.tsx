@@ -19,7 +19,8 @@ export default function AuthInitalizer({ hasAccessToken }: Props) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
-  const params = new URLSearchParams(searchParams.toString());
+  const queryString = searchParams.toString();
+  const currentPath = queryString ? `${pathname}?${queryString}` : pathname;
   const fetcher = useFetcher<typeof action>();
 
   const isAutoLogin = useAppConfigStore((s) => s.isAutoLogin);
@@ -57,15 +58,12 @@ export default function AuthInitalizer({ hasAccessToken }: Props) {
       title: '세션만료',
       text: '세션이 만료되었습니다. 로그아웃합니다.',
       handleAfterClose: () => {
-        navigate(
-          `/login?redirect=${encodeURIComponent(`${pathname}?${params}`)}`,
-          {
-            replace: true,
-          },
-        );
+        navigate(`/login?redirect=${encodeURIComponent(currentPath)}`, {
+          replace: true,
+        });
       },
     });
-  }, [logout, clearRefreshTimer, showModal, navigate, pathname]);
+  }, [logout, clearRefreshTimer, showModal, navigate, currentPath]);
 
   const handleServerError = useCallback(() => {
     logout();
@@ -75,15 +73,12 @@ export default function AuthInitalizer({ hasAccessToken }: Props) {
       title: '서버에러',
       text: '서버 문제가 발생하였습니다.',
       handleAfterClose: () => {
-        navigate(
-          `/login?redirect=${encodeURIComponent(`${pathname}?${params}`)}`,
-          {
-            replace: true,
-          },
-        );
+        navigate(`/login?redirect=${encodeURIComponent(currentPath)}`, {
+          replace: true,
+        });
       },
     });
-  }, [logout, clearRefreshTimer, showModal, navigate, pathname]);
+  }, [logout, clearRefreshTimer, showModal, navigate, currentPath]);
 
   const handleKeyError = useCallback(() => {
     logout();
@@ -93,15 +88,12 @@ export default function AuthInitalizer({ hasAccessToken }: Props) {
       title: 'API KEY 에러',
       text: 'API KEY가 잘못되었습니다. 관리자에게 문의하세요.',
       handleAfterClose: () => {
-        navigate(
-          `/login?redirect=${encodeURIComponent(`${pathname}?${params}`)}`,
-          {
-            replace: true,
-          },
-        );
+        navigate(`/login?redirect=${encodeURIComponent(currentPath)}`, {
+          replace: true,
+        });
       },
     });
-  }, [logout, clearRefreshTimer, showModal, navigate, pathname]);
+  }, [logout, clearRefreshTimer, showModal, navigate, currentPath]);
 
   const scheduleRefresh = useCallback(
     (expiresAt: number) => {
@@ -150,7 +142,15 @@ export default function AuthInitalizer({ hasAccessToken }: Props) {
           handleServerError();
       }
     }
-  }, [fetcher.data, login, navigate]);
+  }, [
+    fetcher.data,
+    login,
+    navigate,
+    handleAuthFailure,
+    handleKeyError,
+    handleServerError,
+    scheduleRefresh,
+  ]);
 
   useEffect(() => {
     if (!hasHydrated || !isLoggedIn) return;
@@ -158,7 +158,7 @@ export default function AuthInitalizer({ hasAccessToken }: Props) {
     recoverAuth();
 
     return () => clearRefreshTimer();
-  }, [hasHydrated, recoverAuth, clearRefreshTimer]);
+  }, [hasHydrated, recoverAuth, clearRefreshTimer, isLoggedIn]);
 
   return null;
 }

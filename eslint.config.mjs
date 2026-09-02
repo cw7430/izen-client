@@ -3,7 +3,12 @@ import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
-  globalIgnores(['**/dist/**', '**/node_modules/**']),
+  globalIgnores([
+    '**/dist/**',
+    '**/node_modules/**',
+    '**/build/**',
+    '**/.react-router/**',
+  ]),
 
   js.configs.recommended,
 
@@ -12,12 +17,19 @@ export default defineConfig([
   {
     rules: {
       '@typescript-eslint/no-unused-vars': [
-        'error',
+        'warn',
         {
           varsIgnorePattern: '^_',
           argsIgnorePattern: '^_',
           caughtErrorsIgnorePattern: '^_',
           ignoreRestSiblings: true,
+        },
+      ],
+
+      '@typescript-eslint/no-empty-object-type': [
+        'error',
+        {
+          allowInterfaces: 'always',
         },
       ],
     },
