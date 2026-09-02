@@ -7,6 +7,7 @@ import {
 
 export default [
   route('logout', 'routes/_api/logout.ts'),
+  route('refresh', 'routes/_api/refresh.ts'),
   layout('routes/_guest/layout.tsx', [
     route('login', 'routes/_guest/login.tsx'),
   ]),
