@@ -1,13 +1,13 @@
 import { Outlet, redirect } from 'react-router';
 
 import type { Route } from './+types/layout';
-import { getCookies } from '~/shared/lib/server';
+import { getTokenCookies } from '~/shared/lib/server';
 import { Header } from '~/shared/components/layout/header';
 import { Footer } from '~/shared/components/layout/footer';
 import { AuthInitalizer } from '~/features/auth/components/layout';
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
-  const cookies = getCookies(request);
+  const cookies = await getTokenCookies(request);
 
   const hasRefreshToken = !!cookies?.refreshToken;
   const hasAccessToken = !!cookies?.accessToken;

@@ -1,13 +1,14 @@
 import type { LogoutRequestDto } from '~/features/auth/schemas';
 import { ServerRequest } from '~/shared/api/server';
-import { getCookies } from '~/shared/lib/server';
-import { createTokenCookies } from './shared.server';
+import { getTokenCookies } from '~/shared/lib/server';
+import { createTokenCookie } from '~/shared/lib/server';
 
 const { apiPost } = ServerRequest;
 
 export const logoutAction = async (request: Request) => {
-  const cookies = getCookies(request);
-  const refreshToken = cookies?.['refreshToken'];
+  const cookies = await getTokenCookies(request);
+
+  const refreshToken = cookies?.refreshToken;
 
   if (refreshToken) {
     try {
@@ -18,8 +19,8 @@ export const logoutAction = async (request: Request) => {
     }
   }
 
-  const accessTokenCookie = createTokenCookies({ type: 'access' });
-  const refreshTokenCookie = createTokenCookies({
+  const accessTokenCookie = createTokenCookie({ type: 'access' });
+  const refreshTokenCookie = createTokenCookie({
     type: 'refresh',
     isAuto: false,
   });

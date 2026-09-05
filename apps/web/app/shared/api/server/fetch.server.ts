@@ -8,7 +8,7 @@ import {
 } from '@repo/shared-api/fetch';
 import { ResponseCode } from '@repo/shared-constants/api';
 
-import { getCookies } from '~/shared/lib/server';
+import { getTokenCookies } from '~/shared/lib/server';
 
 export type AuthType = 'access' | 'refresh' | 'none';
 
@@ -36,7 +36,7 @@ const resolveAuthOptions = async (
     );
   }
 
-  const cookies = getCookies(request);
+  const cookies = await getTokenCookies(request);
 
   if (!cookies) {
     console.error('The cookie is not found');
@@ -46,9 +46,8 @@ const resolveAuthOptions = async (
     );
   }
 
-  const cookieKey = authType === 'access' ? 'accessToken' : 'refreshToken';
-
-  const bearerToken = cookies[cookieKey];
+  const bearerToken =
+    authType === 'access' ? cookies.accessToken : cookies.refreshToken;
 
   if (!bearerToken) {
     console.error('The token is not found');
@@ -79,7 +78,7 @@ const serverFetch = async <T>(
     ...init
   } = options;
 
-  const bearerToken = resolveAuthOptions(request, authType);
+  const bearerToken = await resolveAuthOptions(request, authType);
   const contentOptions = resolveContentType(contentType);
   const url = resolveUrl(input, baseUrl);
 
