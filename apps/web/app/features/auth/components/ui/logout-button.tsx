@@ -30,7 +30,7 @@ export default function LogoutButton() {
     if (!res) return;
 
     logout();
-    navigate(`/login?redirect=${encodeURIComponent(currentPath)}}`, {
+    navigate(`/login?redirect=${encodeURIComponent(currentPath)}`, {
       replace: true,
     });
   }, [fetcher.data, logout, navigate, currentPath]);
