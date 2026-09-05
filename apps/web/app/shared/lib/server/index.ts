@@ -1,1 +1,1 @@
-export { getCookies } from './cookies.server';
+export { createTokenCookie, getTokenCookies } from './auth-cookies.server';
