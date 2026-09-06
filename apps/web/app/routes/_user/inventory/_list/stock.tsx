@@ -1,6 +1,6 @@
 import { ErpTeb } from '~/shared/components/ui/teb';
 
-export default function Stock() {
+export default function StockList() {
   return (
     <>
       <h1 className="text-center">재고</h1>
