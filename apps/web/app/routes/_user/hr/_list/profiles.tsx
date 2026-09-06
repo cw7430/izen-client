@@ -68,7 +68,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   return <InternalServerError />;
 }
 
-export default function Profiles({ loaderData }: Route.ComponentProps) {
+export default function ProfileList({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <h1 className="text-center">직원</h1>

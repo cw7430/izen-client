@@ -18,6 +18,7 @@ export default [
       route('hr/attendance', 'routes/_user/hr/_list/attendance.tsx'),
       route('hr/payroll', 'routes/_user/hr/_list/payroll.tsx'),
     ]),
+    route('hr/profiles/:id', 'routes/_user/hr/_detail/profiles.tsx'),
     layout('routes/_user/inventory/_list/layout.tsx', [
       route('inventory/stock', 'routes/_user/inventory/_list/stock.tsx'),
       route('inventory/products', 'routes/_user/inventory/_list/products.tsx'),
