@@ -1,4 +1,3 @@
-import { inspect } from 'util';
 import { ApiError } from '@repo/shared-api/error';
 
 import type { Route } from './+types/profiles';
@@ -11,6 +10,7 @@ import {
   Unauthorized,
 } from '~/shared/components/layout/errors';
 import { ResponseCode } from '@repo/shared-constants/api';
+import { ProfilesTable } from '~/features/hr/profiles/components/list';
 
 type SortPath = 'EMPLOYEE' | 'POSITION' | 'DEPARTMENT';
 type SortOrder = 'ASC' | 'DESC';
@@ -73,9 +73,7 @@ export default function Profiles({ loaderData }: Route.ComponentProps) {
     <>
       <h1 className="text-center">직원</h1>
       <ErpTeb domain="hr" />
-      <div>
-        <pre>{inspect(loaderData.profiles, { depth: null })}</pre>
-      </div>
+      <ProfilesTable data={loaderData.profiles} params={loaderData.params} />
     </>
   );
 }
