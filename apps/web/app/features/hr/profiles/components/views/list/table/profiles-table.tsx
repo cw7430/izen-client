@@ -6,6 +6,7 @@ import type {
 } from '~/features/hr/profiles/schemas';
 import { SortChevron } from '~/shared/components/ui/chevron';
 import { CustomPagination } from '~/shared/components/layout/pagination';
+import ProfilesTableRows from './profiles-table-row';
 
 interface Props {
   data: ProfileListResponseDto;
@@ -60,15 +61,7 @@ export default function ProfilesTable({ data, params }: Props) {
             </thead>
             <tbody>
               {data.employeeProfiles.contents.map((profile) => (
-                <tr style={{ cursor: 'pointer' }}>
-                  <td>{profile.employeeCode}</td>
-                  <td>{profile.employeeName}</td>
-                  <td>{profile.phone}</td>
-                  <td>{profile.departmentName}</td>
-                  <td>{profile.positionName}</td>
-                  <td>{profile.createdAt.toLocaleDateString()}</td>
-                  <td>{profile.updatedAt.toLocaleDateString()}</td>
-                </tr>
+                <ProfilesTableRows profile={profile} />
               ))}
             </tbody>
           </Table>

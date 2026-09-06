@@ -1,4 +1,5 @@
 import { ApiError } from '@repo/shared-api/error';
+import { ResponseCode } from '@repo/shared-constants/api';
 
 import type { Route } from './+types/profiles';
 import { getProfileList } from '~/features/hr/profiles/server/loaders';
@@ -9,8 +10,7 @@ import {
   InvalidUrl,
   Unauthorized,
 } from '~/shared/components/layout/errors';
-import { ResponseCode } from '@repo/shared-constants/api';
-import { ProfilesTable } from '~/features/hr/profiles/components/list';
+import { ProfilesTable } from '~/features/hr/profiles/components/views/list';
 
 type SortPath = 'EMPLOYEE' | 'POSITION' | 'DEPARTMENT';
 type SortOrder = 'ASC' | 'DESC';
