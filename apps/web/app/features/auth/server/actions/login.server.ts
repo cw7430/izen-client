@@ -7,11 +7,11 @@ import { loginAndRefresh } from './shared.server';
 
 const { apiPost } = ServerRequest;
 
-export const loginAction = async (req: LoginRequestDto) => {
+export const login = async (body: LoginRequestDto) => {
   const res = await apiPost<LoginAndRefreshResponseDtoForServer>(
     '/auth/login',
     {},
-    req,
+    body,
   );
 
   return loginAndRefresh(res);

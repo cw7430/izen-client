@@ -8,6 +8,8 @@ import {
 export default [
   route('logout', 'routes/_api/logout.ts'),
   route('refresh', 'routes/_api/refresh.ts'),
+  route('hr/profiles', 'routes/_api/hr/_create/profiles.ts'),
+  route('hr/profiles/:id', 'routes/_api/hr/_update/profiles.ts'),
   layout('routes/_guest/layout.tsx', [
     route('login', 'routes/_guest/login.tsx'),
   ]),

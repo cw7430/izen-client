@@ -2,7 +2,7 @@ import { data } from 'react-router';
 import { ApiError } from '@repo/shared-api/error';
 
 import type { Route } from './+types/refresh';
-import { refreshAction } from '~/features/auth/server/actions/refresh.server';
+import { refresh } from '~/features/auth/server/actions';
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -10,7 +10,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const body = { isAuto: formData.get('isAuto') === 'true' };
 
   try {
-    const { data: loginData, headers } = await refreshAction(body);
+    const { data: loginData, headers } = await refresh(body);
 
     return data(
       {

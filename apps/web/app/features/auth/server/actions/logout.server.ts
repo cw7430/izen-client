@@ -5,15 +5,15 @@ import { createTokenCookie } from '~/shared/lib/server';
 
 const { apiPost } = ServerRequest;
 
-export const logoutAction = async (request: Request) => {
+export const logout = async (request: Request) => {
   const cookies = await getTokenCookies(request);
 
   const refreshToken = cookies?.refreshToken;
 
   if (refreshToken) {
     try {
-      const req: LogoutRequestDto = { refreshToken };
-      await apiPost<void>('/auth/logout', {}, req);
+      const body: LogoutRequestDto = { refreshToken };
+      await apiPost<void>('/auth/logout', {}, body);
     } catch (e) {
       console.error('Logout API Error (Ignored):', e);
     }

@@ -4,7 +4,7 @@ import { ApiError } from '@repo/shared-api/error';
 
 import styles from './login.module.css';
 import type { Route } from './+types/login';
-import { loginAction } from '~/features/auth/server/actions';
+import { login } from '~/features/auth/server/actions';
 import { loginRequestSchema } from '~/features/auth/schemas';
 import { LoginForm } from '~/features/auth/components/views/login';
 
@@ -25,7 +25,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   }
 
   try {
-    const { data: loginData, headers } = await loginAction(parsed.data);
+    const { data: loginData, headers } = await login(parsed.data);
 
     return data(
       {
