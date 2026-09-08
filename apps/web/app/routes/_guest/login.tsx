@@ -1,6 +1,7 @@
 import { data } from 'react-router';
 import clsx from 'clsx';
 import { ApiError } from '@repo/shared-api/error';
+import { ResponseCode } from '@repo/shared-constants/api';
 
 import styles from './login.module.css';
 import type { Route } from './+types/login';
@@ -20,7 +21,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (!parsed.success) {
     return data({
       success: false as const,
-      code: 'VE' as const,
+      code: ResponseCode.VALIDATION_ERROR,
     });
   }
 

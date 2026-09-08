@@ -1,5 +1,6 @@
 import { data } from 'react-router';
 import { ApiError } from '@repo/shared-api/error';
+import { ResponseCode } from '@repo/shared-constants/api';
 
 import type { Route } from './+types/profiles';
 import { createProfileRequestSchema } from '~/features/hr/profiles/schemas';
@@ -21,7 +22,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (!parsed.success) {
     return data({
       success: false as const,
-      code: 'VE' as const,
+      code: ResponseCode.VALIDATION_ERROR,
     });
   }
 
@@ -35,6 +36,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       return data({
         success: false as const,
         code: e.code,
+        errors: e.errors
       });
     }
 
