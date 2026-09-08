@@ -12,12 +12,14 @@ import {
 
 const { apiGet } = ServerRequest;
 
+const BASE_URL = '/hr/profiles';
+
 export const getProfileList = async (
   request: Request,
   param: ProfileListRequestDto,
 ) => {
   const res = await apiGet<ProfileListResponseDto>(
-    '/hr/profiles',
+    BASE_URL,
     { request, authType: 'access' },
     param,
   );
@@ -37,7 +39,7 @@ export const getProfileList = async (
 };
 
 export const getProfile = async (request: Request, id: string) => {
-  const res = await apiGet<ProfileDetailResponseDto>(`/hr/profiles/${id}`, {
+  const res = await apiGet<ProfileDetailResponseDto>(`${BASE_URL}/${id}`, {
     request,
     authType: 'access',
   });
