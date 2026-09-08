@@ -11,6 +11,7 @@ import {
   Unauthorized,
 } from '~/shared/components/layout/errors';
 import { ProfilesTable } from '~/features/hr/profiles/components/views/list';
+import { ShowModalButton } from '~/shared/components/ui/button';
 
 type SortPath = 'EMPLOYEE' | 'POSITION' | 'DEPARTMENT';
 type SortOrder = 'ASC' | 'DESC';
@@ -69,10 +70,19 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 }
 
 export default function ProfileList({ loaderData }: Route.ComponentProps) {
+  const modalKey = 'CreateProfile';
+
   return (
     <>
       <h1 className="text-center">직원</h1>
-      <ErpTeb domain="hr" />
+      <ErpTeb domain="hr">
+        <ShowModalButton
+          allowedProfileTeams={loaderData.profiles.allowedProfileTeams}
+          modalKey={modalKey}
+          name="추가"
+          className="me-2"
+        />
+      </ErpTeb>
       <ProfilesTable data={loaderData.profiles} params={loaderData.params} />
     </>
   );

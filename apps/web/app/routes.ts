@@ -10,6 +10,7 @@ export default [
   route('refresh', 'routes/_api/refresh.ts'),
   route('hr/profiles', 'routes/_api/hr/_create/profiles.ts'),
   route('hr/profiles/:id', 'routes/_api/hr/_update/profiles.ts'),
+  route('hr/profiles/employee-code', 'routes/_api/hr/profiles/employee-code.ts'),
   layout('routes/_guest/layout.tsx', [
     route('login', 'routes/_guest/login.tsx'),
   ]),
