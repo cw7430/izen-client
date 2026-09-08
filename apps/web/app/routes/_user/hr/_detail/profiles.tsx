@@ -12,6 +12,7 @@ import {
   Unauthorized,
 } from '~/shared/components/layout/errors';
 import { NavProfileListButton } from '~/features/hr/profiles/components/views/detail';
+import { ShowModalButton } from '~/shared/components/ui/button';
 
 export const loader = async ({ request, params }: Route.LoaderArgs) => {
   const id = params.id;
@@ -57,6 +58,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 export default function ProfileDetail({ loaderData }: Route.ComponentProps) {
   const { profile } = loaderData;
 
+  const MODAL_KEY = 'UpdateProfile';
+
   return (
     <>
       <div className="d-flex flex-column min-vh-100">
@@ -98,6 +101,12 @@ export default function ProfileDetail({ loaderData }: Route.ComponentProps) {
           </Row>
           <Row className="justify-content-center">
             <Col xs="auto">
+              <ShowModalButton
+                allowedProfileTeams={profile.allowedProfileTeams}
+                modalKey={MODAL_KEY}
+                name="사원 정보 수정"
+                className="me-2"
+              />
               <NavProfileListButton />
             </Col>
           </Row>
